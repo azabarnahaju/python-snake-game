@@ -19,8 +19,8 @@ class Snake:
             x -= 20
             self.segments.append(t)
 
-    def move(self):
-        time.sleep(0.1)
+    def move(self, speed):
+        time.sleep(speed)
 
         for i in range(len(self.segments)-1, 0, -1):
             new_pos = self.segments[i - 1].pos()
