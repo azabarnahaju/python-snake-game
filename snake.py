@@ -41,3 +41,36 @@ class Snake:
     def go_down(self):
         if self.head.heading() != 90:
             self.head.setheading(270)
+
+    def grow(self):
+        t = Turtle('square')
+        t.ht()
+        t.color('white')
+        t.up()
+        tail = self.segments[-1]
+
+        if tail.xcor() == self.segments[-2].xcor():
+            t.setx(tail.xcor())
+        else:
+            t.setx(tail.xcor() + (tail.xcor()-self.segments[-2].xcor()))
+
+        if tail.ycor() == self.segments[-2].ycor():
+            t.sety(tail.ycor())
+        else:
+            t.sety(tail.ycor() + (tail.ycor()-self.segments[-2].ycor()))
+
+        t.st()
+        self.segments.append(t)
+
+    def has_bit_itself(self):
+        for segment in self.segments[1:]:
+            if self.head.distance(segment) < 10:
+                return True
+        return False
+
+    def has_hit_wall(self):
+        head_x = int(self.head.xcor())
+        head_y = int(self.head.ycor())
+        if head_x + 10 >= 300 or head_x-10 <= -300 or head_y+10 >= 300 or head_y-10 <= -300:
+            return True
+        return False
