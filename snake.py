@@ -7,6 +7,7 @@ class Snake:
         self.segments = []
         self.create_snake()
         self.head = self.segments[0]
+        self.head.color('lightgreen')
 
     def create_snake(self):
         x, y = 20, 0
